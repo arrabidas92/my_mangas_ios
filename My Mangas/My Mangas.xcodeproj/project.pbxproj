@@ -24,6 +24,7 @@
 		B4413AD627A6DAA800ADBB35 /* CollectionMangaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4413AD527A6DAA800ADBB35 /* CollectionMangaItem.swift */; };
 		B4413AD927A6DD5C00ADBB35 /* FirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4413AD827A6DD5C00ADBB35 /* FirebaseData.swift */; };
 		B4413ADB27A6DDD100ADBB35 /* CollectionMangasRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4413ADA27A6DDD100ADBB35 /* CollectionMangasRepository.swift */; };
+		B483915327B018C0003368F3 /* CollectionMangaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483915227B018C0003368F3 /* CollectionMangaCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		B4413AD527A6DAA800ADBB35 /* CollectionMangaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMangaItem.swift; sourceTree = "<group>"; };
 		B4413AD827A6DD5C00ADBB35 /* FirebaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseData.swift; sourceTree = "<group>"; };
 		B4413ADA27A6DDD100ADBB35 /* CollectionMangasRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMangasRepository.swift; sourceTree = "<group>"; };
+		B483915227B018C0003368F3 /* CollectionMangaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMangaCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				B4413AD327A6D9D000ADBB35 /* CollectionMangasVM.swift */,
 				B4413ADA27A6DDD100ADBB35 /* CollectionMangasRepository.swift */,
 				B4413AD527A6DAA800ADBB35 /* CollectionMangaItem.swift */,
+				B483915227B018C0003368F3 /* CollectionMangaCell.swift */,
 			);
 			path = CollectionMangas;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				B4413AD627A6DAA800ADBB35 /* CollectionMangaItem.swift in Sources */,
 				B4413AD227A6D5F000ADBB35 /* UILifeCycleVC.swift in Sources */,
 				B4413ADB27A6DDD100ADBB35 /* CollectionMangasRepository.swift in Sources */,
+				B483915327B018C0003368F3 /* CollectionMangaCell.swift in Sources */,
 				B4413A9727A6CD9C00ADBB35 /* SceneDelegate.swift in Sources */,
 				B4413AD027A6D23D00ADBB35 /* CollectionMangasVC.swift in Sources */,
 				B4413AD427A6D9D000ADBB35 /* CollectionMangasVM.swift in Sources */,

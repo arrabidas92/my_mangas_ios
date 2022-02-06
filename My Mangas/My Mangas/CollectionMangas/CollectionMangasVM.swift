@@ -9,15 +9,17 @@ import Foundation
 import RxSwift
 
 protocol CollectionMangasViewModel: AnyObject {
-    func getMangasCollection() -> Single<[CollectionMangaItem]>
+    var mangasCollection: Observable<[CollectionMangaItem]> { get }
 }
 
 final class CollectionMangasViewModelImpl: CollectionMangasViewModel {
+    private let collectionMangasRepository: CollectionMangasRepository
     
-    func getMangasCollection() -> Single<[CollectionMangaItem]> {
-        return Single.deferred {
-            // MARK: - TO IMPLEMENT
-            return Single.just([])
-        }
+    init(collectionMangasRepository: CollectionMangasRepository) {
+        self.collectionMangasRepository = collectionMangasRepository
+    }
+    
+    var mangasCollection: Observable<[CollectionMangaItem]> {
+        return collectionMangasRepository.getMangasCollection()
     }
 }

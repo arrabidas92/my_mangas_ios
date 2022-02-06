@@ -7,6 +7,8 @@
 
 import UIKit
 import os.log
+import RxSwift
+import RxCocoa
 
 final class CollectionMangasVC: UILifeCycleVC {
 
@@ -38,8 +40,22 @@ final class CollectionMangasVC: UILifeCycleVC {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
+        collectionView.register(CollectionMangaCell.self, forCellWithReuseIdentifier: CollectionMangaCell.identifier)
+        
         return collectionView
     }()
+    
+    // MARK: - ViewModel
+    
+    private lazy var viewModel: CollectionMangasViewModel = {
+        return CollectionMangasViewModelImpl(
+            collectionMangasRepository: RxCollectionMangasRepository()
+        )
+    }()
+    
+    // MARK: - DisposeBag
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,5 +69,13 @@ final class CollectionMangasVC: UILifeCycleVC {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        viewModel.mangasCollection.bind(
+            to: collectionView.rx.items(cellIdentifier: CollectionMangaCell.identifier, cellType: CollectionMangaCell.self)
+        ) { index, model, cell in
+            print("Bind manga item", model)
+            cell.bind(model)
+            
+        }.disposed(by: disposeBag)
     }
 }
