@@ -10,13 +10,11 @@ import os.log
 import RxSwift
 import RxCocoa
 
-final class CollectionMangasVC: UILifeCycleVC {
+final class CollectionMangasVC: UILifeCycleVC, HasCustomView {
 
     // MARK: - Attributes
     
-    private unowned var collectionView: UICollectionView!
-    private unowned var loadingIndicator: UIActivityIndicatorView!
-    private unowned var errorLabel: UILabel! // TO INIT
+    typealias CustomView = CollectionMangasView
     
     // MARK: - ViewModel
     
@@ -41,11 +39,17 @@ final class CollectionMangasVC: UILifeCycleVC {
         fatalError("CollectionMangasVC:not available")
     }
     
+    override func loadView() {
+        super.loadView()
+        
+        let customView = CollectionMangasView(layoutFactory)
+        view = customView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        
         bindVM()
-        viewModel.fetchMangasCollection()
     }
 }
 
@@ -54,68 +58,24 @@ final class CollectionMangasVC: UILifeCycleVC {
 extension CollectionMangasVC {
     private func bindVM() {
         viewModel.isLoadingSubject
-            .bind(to: loadingIndicator.rx.isAnimating)
+            .bind(to: customView.loadingIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
         
         viewModel.errorSubject
-            .bind { error in
-                switch error {
-                case .failed:
-                    // TO BIND UILABEL centered
-                    print("failed")
-                }
+            .bind { [unowned self] error in
+                self.customView.collectionView.isHidden = true
+                self.customView.errorLabel.isHidden = false
+                self.customView.errorLabel.text = error.errorDescription
             }.disposed(by: disposeBag)
         
         viewModel.mangasCollectionSubject
-            .bind(to: collectionView.rx.items(
+            .bind(to: customView.collectionView.rx.items(
                 cellIdentifier: CollectionMangaCell.identifier,
                 cellType: CollectionMangaCell.self)
         ) { index, model, cell in
             cell.bind(model)
         }.disposed(by: disposeBag)
-    }
-    
-    private func setupView() {
-        view.backgroundColor = .white
         
-        setupCollectionView()
-        setupLoadingIndicator()
-    }
-    
-    private func setupLoadingIndicator() {
-        let loadingIndicator = UIActivityIndicatorView(style: .large)
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.color = .black
-        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(loadingIndicator)
-        
-        self.loadingIndicator = loadingIndicator
-        
-        NSLayoutConstraint.activate([
-            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
-    
-    private func setupCollectionView() {
-        let layout = layoutFactory.create()
-        let collectionLayout = layout.createLayout()
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .white
-        collectionView.register(CollectionMangaCell.self, forCellWithReuseIdentifier: CollectionMangaCell.identifier)
-        
-        view.addSubview(collectionView)
-        
-        self.collectionView = collectionView
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        viewModel.fetchMangasCollection()
     }
 }

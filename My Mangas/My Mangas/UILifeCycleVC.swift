@@ -11,6 +11,11 @@ class UILifeCycleVC: UIViewController {
     
     private lazy var className = NSStringFromClass(self.classForCoder)
     
+    override func loadView() {
+        super.loadView()
+        print("\(className):loadView")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("\(className):viewDidLoad")

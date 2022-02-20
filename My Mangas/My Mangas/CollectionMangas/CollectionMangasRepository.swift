@@ -7,8 +7,15 @@
 
 import Foundation
 
-enum CollectionMangasNetworkError: Error {
+enum CollectionMangasNetworkError: LocalizedError {
     case failed
+    
+    var errorDescription: String? {
+        switch self {
+        case .failed:
+            return "Network's request failed"
+        }
+    }
 }
 
 protocol CollectionMangasRepository {

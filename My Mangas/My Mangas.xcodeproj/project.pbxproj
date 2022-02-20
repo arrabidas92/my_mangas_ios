@@ -26,6 +26,8 @@
 		B4413ADB27A6DDD100ADBB35 /* CollectionMangasRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4413ADA27A6DDD100ADBB35 /* CollectionMangasRepository.swift */; };
 		B4598DBF27B95C520087C1D3 /* CollectionLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4598DBE27B95C520087C1D3 /* CollectionLayoutFactory.swift */; };
 		B483915327B018C0003368F3 /* CollectionMangaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483915227B018C0003368F3 /* CollectionMangaCell.swift */; };
+		B4BAE02B27C284FA00ED550D /* HasCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BAE02A27C284FA00ED550D /* HasCustomView.swift */; };
+		B4BAE02D27C2851B00ED550D /* CollectionMangasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BAE02C27C2851B00ED550D /* CollectionMangasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		B4413ADA27A6DDD100ADBB35 /* CollectionMangasRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMangasRepository.swift; sourceTree = "<group>"; };
 		B4598DBE27B95C520087C1D3 /* CollectionLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayoutFactory.swift; sourceTree = "<group>"; };
 		B483915227B018C0003368F3 /* CollectionMangaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMangaCell.swift; sourceTree = "<group>"; };
+		B4BAE02A27C284FA00ED550D /* HasCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasCustomView.swift; sourceTree = "<group>"; };
+		B4BAE02C27C2851B00ED550D /* CollectionMangasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionMangasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				B4413ACF27A6D23D00ADBB35 /* CollectionMangasVC.swift */,
+				B4BAE02C27C2851B00ED550D /* CollectionMangasView.swift */,
 				B4413AD327A6D9D000ADBB35 /* CollectionMangasVM.swift */,
 				B4413ADA27A6DDD100ADBB35 /* CollectionMangasRepository.swift */,
 				B4413AD527A6DAA800ADBB35 /* CollectionMangaItem.swift */,
@@ -165,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				B4413AD827A6DD5C00ADBB35 /* FirebaseData.swift */,
+				B4BAE02A27C284FA00ED550D /* HasCustomView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -317,8 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4BAE02B27C284FA00ED550D /* HasCustomView.swift in Sources */,
 				B4413AD927A6DD5C00ADBB35 /* FirebaseData.swift in Sources */,
 				B4413A9527A6CD9C00ADBB35 /* AppDelegate.swift in Sources */,
+				B4BAE02D27C2851B00ED550D /* CollectionMangasView.swift in Sources */,
 				B4413AD627A6DAA800ADBB35 /* CollectionMangaItem.swift in Sources */,
 				B4413AD227A6D5F000ADBB35 /* UILifeCycleVC.swift in Sources */,
 				B4413ADB27A6DDD100ADBB35 /* CollectionMangasRepository.swift in Sources */,
