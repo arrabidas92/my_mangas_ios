@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class CollectionMangaCell: UICollectionViewCell {
     
@@ -16,6 +17,13 @@ final class CollectionMangaCell: UICollectionViewCell {
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView(image: nil)
+        imageView.contentMode = .scaleToFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     // MARK: - Init
@@ -32,10 +40,19 @@ final class CollectionMangaCell: UICollectionViewCell {
         setup()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        label.text = nil
+        imageView.image = nil
+    }
+    
     // MARK: - Bind
     
     func bind(_ item: CollectionMangaItem) {
         label.text = item.name
+        let url = URL(string: item.imageURL)
+        imageView.kf.setImage(with: url)
     }
 }
 
@@ -43,11 +60,14 @@ final class CollectionMangaCell: UICollectionViewCell {
 
 extension CollectionMangaCell {
     private func setup() {
-        contentView.addSubview(label)
+        contentView.addSubview(imageView)
+        //contentView.addSubview(label)
         
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
 }
